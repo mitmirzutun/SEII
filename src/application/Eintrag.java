@@ -2,7 +2,7 @@ package application;
 
 public class Eintrag {
 	private String vorname,nachname,adresse,debugPrefix="application.Eintrag";
-	public static boolean DEBUGGING=false;
+	private static boolean DEBUGGING=false;
 	public Eintrag(String vorname, String nachname, String adresse) {
 		if (DEBUGGING) {
 			System.out.println(debugPrefix+": Call of Constructor(String, String, String)");
@@ -112,5 +112,14 @@ public class Eintrag {
 		if (!(o instanceof Eintrag))
 			return false;
 		return o.toString().equals(this.toString());
+	}
+	public static void startDebugging() {
+		DEBUGGING=true;
+	}
+	public static void stopDebugging() {
+		DEBUGGING=false;
+	}
+	public int length() {
+		return 2+vorname.length()+nachname.length()+adresse.length();
 	}
 }
