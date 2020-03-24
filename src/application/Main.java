@@ -1,5 +1,6 @@
 package application;
 
+import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -8,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class Main extends Application {
 		public void start(Stage primaryStage) {
@@ -20,8 +22,12 @@ public class Main extends Application {
 			tf2.setPrefColumnCount(5);
 			tf2.setMaxWidth(100);
 			Label l = new Label();
-	        // action event 
-	        EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
+	        // action event
+			TranslateTransition transition = new TranslateTransition(Duration.millis(400), tf1);
+			transition.setToY(-180);
+			transition.setToX(-150);
+			transition.play();
+			EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
 	        	String[] StringArray=new String[0];
 	            public void handle(ActionEvent e) 
 	            {
