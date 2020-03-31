@@ -1,22 +1,22 @@
 package application;
 
 public class Telefonbuch {
-	Eintrag[] einträge;
-	public Telefonbuch(Eintrag...einträge) {
+	TelefonEntry[] einträge;
+	public Telefonbuch(TelefonEntry...einträge) {
 		this.einträge=einträge.clone();
 	}
-	public void addEintrag(Eintrag...einträge) {
-		Eintrag[] tmp=new Eintrag[this.einträge.length+einträge.length];
+	public void addEintrag(TelefonEntry...einträge) {
+		TelefonEntry[] tmp=new TelefonEntry[this.einträge.length+einträge.length];
 		for (int i=0;i<this.einträge.length;i++) 
 			tmp[i]=this.einträge[i];
 		for (int i=0;i<einträge.length;i++)
 			tmp[i+this.einträge.length]=einträge[i];
 	}
-	public Eintrag[] findEintragbyName(String vorname, String nachname) {
-		Eintrag[] tmp=new Eintrag[0];
+	public TelefonEntry[] findEintragbyName(String vorname, String nachname) {
+		TelefonEntry[] tmp=new TelefonEntry[0];
 		for (int i=0;i<einträge.length;i++) {
 			if (einträge[i].getFirstName().equals(vorname)&&einträge[i].getLastName().equals(nachname)) {
-				Eintrag[] tmp1=new Eintrag[tmp.length+1];
+				TelefonEntry[] tmp1=new TelefonEntry[tmp.length+1];
 				for (int j=0;j<tmp.length;j++)
 					tmp1[j]=tmp[j];
 				tmp1[tmp.length]=einträge[i];
@@ -25,11 +25,11 @@ public class Telefonbuch {
 		}
 		return tmp;
 	}
-	public Eintrag[] findEintragbyAdress(String adress) {
-		Eintrag[] tmp=new Eintrag[0];
+	public TelefonEntry[] findEintragbyAdress(String adress) {
+		TelefonEntry[] tmp=new TelefonEntry[0];
 		for (int i=0;i<einträge.length;i++) {
 			if (einträge[i].getAdress().equals(adress)) {
-				Eintrag[] tmp1=new Eintrag[tmp.length+1];
+				TelefonEntry[] tmp1=new TelefonEntry[tmp.length+1];
 				for (int j=0;j<tmp.length;j++)
 					tmp1[j]=tmp[j];
 				tmp1[tmp.length]=einträge[i];
@@ -39,11 +39,11 @@ public class Telefonbuch {
 		return tmp;
 		
 	}
-	public Eintrag[] findEintragbyFirstName(String vorname) {
-		Eintrag[] tmp=new Eintrag[0];
+	public TelefonEntry[] findEintragbyFirstName(String vorname) {
+		TelefonEntry[] tmp=new TelefonEntry[0];
 		for (int i=0;i<einträge.length;i++) {
 			if (einträge[i].getFirstName().equals(vorname)) {
-				Eintrag[] tmp1=new Eintrag[tmp.length+1];
+				TelefonEntry[] tmp1=new TelefonEntry[tmp.length+1];
 				for (int j=0;j<tmp.length;j++)
 					tmp1[j]=tmp[j];
 				tmp1[tmp.length]=einträge[i];
@@ -52,11 +52,11 @@ public class Telefonbuch {
 		}
 		return tmp;
 	}
-	public Eintrag[] findEintragbyLastName(String nachname) {
-		Eintrag[] tmp=new Eintrag[0];
+	public TelefonEntry[] findEintragbyLastName(String nachname) {
+		TelefonEntry[] tmp=new TelefonEntry[0];
 		for (int i=0;i<einträge.length;i++) {
 			if (einträge[i].getLastName().equals(nachname)) {
-				Eintrag[] tmp1=new Eintrag[tmp.length+1];
+				TelefonEntry[] tmp1=new TelefonEntry[tmp.length+1];
 				for (int j=0;j<tmp.length;j++)
 					tmp1[j]=tmp[j];
 				tmp1[tmp.length]=einträge[i];
@@ -75,9 +75,9 @@ public class Telefonbuch {
 			sb.append(einträge[i].toString());
 		return sb.toString();
 	}
-	public Eintrag[] popEintragbyAdress(String adress) {
-		Eintrag[] tmp1=findEintragbyAdress(adress);
-		Eintrag[] tmp2=new Eintrag[this.einträge.length-tmp1.length+1];
+	public TelefonEntry[] popEintragbyAdress(String adress) {
+		TelefonEntry[] tmp1=findEintragbyAdress(adress);
+		TelefonEntry[] tmp2=new TelefonEntry[this.einträge.length-tmp1.length+1];
 		int n=0;
 		for (int i=0;i<tmp2.length;i++) {
 			if (einträge[i+n].equals(tmp1[n])) {
@@ -89,9 +89,9 @@ public class Telefonbuch {
 		einträge=tmp2;
 		return tmp1;
 	}
-	public Eintrag[] popEintragbyFirstName(String vorname) {
-		Eintrag[] tmp1=findEintragbyFirstName(vorname);
-		Eintrag[] tmp2=new Eintrag[this.einträge.length-tmp1.length+1];
+	public TelefonEntry[] popEintragbyFirstName(String vorname) {
+		TelefonEntry[] tmp1=findEintragbyFirstName(vorname);
+		TelefonEntry[] tmp2=new TelefonEntry[this.einträge.length-tmp1.length+1];
 		int n=0;
 		for (int i=0;i<tmp2.length;i++) {
 			if (einträge[i+n].equals(tmp1[n])) {
@@ -103,9 +103,9 @@ public class Telefonbuch {
 		einträge=tmp2;
 		return tmp1;
 	}
-	public Eintrag[] popEintragbyLastName(String nachname) {
-		Eintrag[] tmp1=findEintragbyLastName(nachname);
-		Eintrag[] tmp2=new Eintrag[this.einträge.length-tmp1.length+1];
+	public TelefonEntry[] popEintragbyLastName(String nachname) {
+		TelefonEntry[] tmp1=findEintragbyLastName(nachname);
+		TelefonEntry[] tmp2=new TelefonEntry[this.einträge.length-tmp1.length+1];
 		int n=0;
 		for (int i=0;i<tmp2.length;i++) {
 			if (einträge[i+n].equals(tmp1[n])) {

@@ -1,69 +1,45 @@
 package application;
 
-import javafx.animation.TranslateTransition;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.StackPane;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 public class Main extends Application {
-		public void start(Stage primaryStage) {
-		try {
-			StackPane root = new StackPane();
-			TextField tf1 = new TextField();
-			tf1.setPrefColumnCount(5);
-			tf1.setMaxWidth(100);
-			TextField tf2 = new TextField();
-			tf2.setPrefColumnCount(5);
-			tf2.setMaxWidth(100);
-			Label l = new Label();
-	        // action event
-			TranslateTransition transition = new TranslateTransition(Duration.millis(400), tf1);
-			transition.setToY(-180);
-			transition.setToX(-150);
-			transition.play();
-			EventHandler<ActionEvent> event = new EventHandler<ActionEvent>() {
-	        	String[] StringArray=new String[0];
-	            public void handle(ActionEvent e) 
-	            {
-	            	String[] tmp = StringArray;
-	            	StringArray=new String[tmp.length+1];
-	            	for (int i=0;i<tmp.length;i++)
-	            		StringArray[i]=tmp[i];
-	            	StringArray[tmp.length]=tf1.getText();
-	                System.out.println(StringArray[tmp.length]);
-	                l.setText(concat(StringArray));
-	            } 
-	            private String concat(String s[]) {
-	            	int length=s.length;
-	            	for (int i=0;i<s.length;i++)
-	            		length+=s[i].length();
-	            	StringBuilder sb=new StringBuilder(length);
-	            	for (int i=0;i<s.length;i++) {
-	            		sb.append(s[i]);
-	            		sb.append('\n');
-	            	}
-	            	return sb.toString();
-	            }
-	        };
-	        tf1.setOnAction(event);
-	        tf2.setOnAction(event);
-			root.getChildren().add(tf1);
-			root.getChildren().add(l);
-			Scene scene = new Scene(root,400,400);
-			primaryStage.setTitle("Hello World");
-			primaryStage.setScene(scene);
-			primaryStage.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
-	public static void main(String[] args) {
-		launch(args);
-	}
+
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+//        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+
+        BorderPane root = new BorderPane();
+        SearchArea searchArea = new SearchArea();
+        Button b= new Button("New Entry");
+        EventHandler<MouseEvent> e= new EventHandler<MouseEvent>() {
+			public void handle(MouseEvent arg0) {
+				TextField tf = new TextField();
+				BorderPane root = new BorderPane();
+				root.setTop(tf);
+				Button b = new Button("Confirm");
+				root.setBottom(b);
+				Stage primaryStage = new Stage();
+				primaryStage.setTitle("First Name");
+				primaryStage.setScene(new Scene(root, 300,275));
+			}
+		};
+        b.setOnMouseClicked(e);
+        root.setTop(searchArea.getPane());
+        root.setBottom(b);
+        primaryStage.setTitle("Search");
+        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.show();
+    }
+
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 }
